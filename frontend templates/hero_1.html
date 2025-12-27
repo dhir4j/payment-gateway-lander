@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pecify Hero Section</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00a082", // Green (kept for background elements)
+              "primary-dark": "#008a6f",
+              "background-light": "#f4f8f6",
+              "background-dark": "#121816",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1e2826",
+              "pecify-purple": "#8B5CF6",
+              "pecify-blue": "#7C3AED",
+              "pecify-dark": "#6D28D9",
+            },
+            fontFamily: {
+              display: ['"DM Serif Display"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              'xl': '1rem',
+              '2xl': '1.5rem',
+            },
+          },
+        },
+      };
+    </script>
+<style>
+        .curved-line {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .gradient-btn {
+            background: linear-gradient(90deg, #8B5CF6 0%, #7C3AED 100%);
+        }
+        .gradient-btn:hover {
+            background: linear-gradient(90deg, #7C3AED 0%, #6D28D9 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-sans antialiased transition-colors duration-300">
+<nav class="relative z-50 w-full px-6 py-4 flex items-center justify-between max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<span class="text-3xl font-bold font-display tracking-tight text-gray-900 dark:text-white">Pecify</span>
+</div>
+<div class="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-600 dark:text-gray-300">
+<a class="hover:text-pecify-purple transition-colors" href="#">Home</a>
+<a class="hover:text-pecify-purple transition-colors" href="#">Features</a>
+<a class="hover:text-pecify-purple transition-colors" href="#">Developers</a>
+<a class="hover:text-pecify-purple transition-colors" href="#">About</a>
+<a class="hover:text-pecify-purple transition-colors" href="#">Pricing</a>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<a class="flex items-center px-6 py-2.5 rounded-lg text-sm font-semibold text-white gradient-btn shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5" href="#">
+                Sign Up Now
+            </a>
+</div>
+<button class="lg:hidden text-gray-700 dark:text-gray-200">
+<span class="material-icons-outlined text-3xl">menu</span>
+</button>
+</nav>
+<main class="relative w-full max-w-7xl mx-auto px-6 pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden">
+<svg class="curved-line absolute top-1/4 left-0 w-full h-full opacity-30 dark:opacity-10 text-primary pointer-events-none" fill="none" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg">
+<path d="M-100 450 C 200 350, 400 550, 600 400 S 1000 100, 1500 50" stroke="currentColor" stroke-width="2"></path>
+</svg>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 relative z-10">
+<div class="lg:col-span-5 flex flex-col justify-center space-y-6">
+<h1 class="text-5xl md:text-6xl font-display font-bold text-gray-900 dark:text-white leading-tight">
+                    Grow more.<br/>
+                    Do more.<br/>
+                    Be more.
+                </h1>
+<p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-md leading-relaxed">
+                    Payment solutions built to work for <em class="font-serif italic text-gray-800 dark:text-gray-200 font-semibold">your business</em>
+</p>
+<div class="flex flex-wrap items-center gap-4 pt-4">
+<button class="gradient-btn text-white px-8 py-3 rounded-lg font-semibold shadow-lg shadow-pecify-purple/30 transition-all transform hover:-translate-y-0.5">
+                        Get Started
+                    </button>
+<button class="bg-surface-light dark:bg-surface-dark border border-pecify-purple text-pecify-purple dark:text-pecify-blue px-8 py-3 rounded-lg font-semibold hover:bg-pecify-purple hover:text-white transition-colors shadow-sm">
+                        Contact Us
+                    </button>
+</div>
+</div>
+<div class="lg:col-span-4 flex items-center justify-center relative">
+<div class="absolute w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-[#dcece5] dark:bg-[#1f352e] rounded-full -z-10 blur-sm transform translate-y-4"></div>
+<div class="relative w-64 md:w-80">
+<img alt="Hand holding smartphone with payment app" class="relative z-10 drop-shadow-2xl rounded-3xl transform rotate-3 hover:rotate-0 transition-transform duration-500 ease-out object-cover mask-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm-mS0Q8CosLtss-2E4DPqNvHAHpNGvDp44KZjouHY3NrI1yiiUhs4d91hhEsQNPzQJhZMKl_EGAyUCSimNXnOsat9TmQU4vGpxyn4FEO4uDgqtkhwyRZD-meLqTo_syI5RkhYt-KHSKtAVMMVUDpFEC-jar-ROVCKnCcYLfF6gEJnS6bJ0nIjiYhwsPC1KHRxmOPslk9QJ_qSPJqjesSoOQyTwiHPqq_zIZ7NXcj4Uw8VW4TD2or5ve23nwupvch9QPCTzxgj4yQF" style="mask-image: linear-gradient(black 80%, transparent 100%); -webkit-mask-image: linear-gradient(black 80%, transparent 100%);"/>
+<svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] pointer-events-none opacity-40 dark:opacity-20 text-primary" viewBox="0 0 400 400">
+<path d="M50,200 C50,100 150,50 250,50 C350,50 380,150 350,250" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="lg:col-span-3 flex flex-col justify-center space-y-8 pt-8 lg:pt-0">
+<h3 class="text-xl font-display font-bold text-gray-800 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 inline-block w-max">
+                    What's New
+                </h3>
+<a class="group flex gap-4 items-start hover:bg-white dark:hover:bg-surface-dark p-3 rounded-xl transition-all duration-300" href="#">
+<div class="w-16 h-16 shrink-0 overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
+<img alt="Startup team meeting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0F3GjFOlB_g4K9LZ_dbl3fvu7q4f_TrSEWiqpuk3w1B5ktgv6VwaBmsKFkVrJdkTPsBF72LwSgpWPNL60FBdnREJ4saD6XVqkOpWQyS2CHjjvOgBNdclKYhf0Vttk8_Zp3DThUOgmL8h86RFnI7L8MQjtSDfboi6LMYXQp0xSQl4Jhp_YccdT3iT7-CEWZPgPTAVvshxLaCCPIjVP2Z0CQhIj01WlZ-ICBxTZDqsiTZ52bMzGlGFJcHTu9D8x0fRwhMLzzwkm7nGx"/>
+</div>
+<div>
+<h4 class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-pecify-purple transition-colors">Startup Program</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">Powering Founders, Fuelling Growth with exclusive resources.</p>
+</div>
+</a>
+<a class="group flex gap-4 items-start hover:bg-white dark:hover:bg-surface-dark p-3 rounded-xl transition-all duration-300" href="#">
+<div class="w-16 h-16 shrink-0 overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 relative flex items-center justify-center bg-teal-100 dark:bg-teal-900">
+<span class="material-icons-outlined text-teal-600 dark:text-teal-300 text-2xl">shopping_bag</span>
+</div>
+<div>
+<h4 class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-pecify-purple transition-colors">D2C Solutions</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">An All-In-One Solution for Checkout, Payments and RTO reduction.</p>
+</div>
+</a>
+<a class="group flex gap-4 items-start hover:bg-white dark:hover:bg-surface-dark p-3 rounded-xl transition-all duration-300" href="#">
+<div class="w-16 h-16 shrink-0 overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 relative flex items-center justify-center bg-green-100 dark:bg-green-900">
+<span class="material-icons-outlined text-green-600 dark:text-green-300 text-2xl">chat</span>
+</div>
+<div>
+<h4 class="font-bold text-sm text-gray-900 dark:text-white group-hover:text-pecify-purple transition-colors">WhatsApp Commerce</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">Grow your business directly on WhatsApp with integrated payments.</p>
+</div>
+</a>
+<a class="text-xs font-bold text-pecify-purple hover:text-pecify-blue uppercase tracking-wider flex items-center mt-2 pl-3" href="#">
+                    Explore more at blogs <span class="material-icons-outlined text-sm ml-1">chevron_right</span>
+</a>
+</div>
+</div>
+</main>
+<button class="fixed bottom-6 right-6 z-50 bg-gray-900 dark:bg-white text-white dark:text-gray-900 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group">
+<span class="material-icons-outlined text-2xl group-hover:rotate-12 transition-transform">chat_bubble_outline</span>
+</button>
+</body></html>

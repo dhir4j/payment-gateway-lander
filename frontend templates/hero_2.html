@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pecify - Payment Solutions</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#7C3AED", // Violet 600 - Deeper, more refined purple
+                        secondary: "#3B82F6", // Blue 500
+                        accent: "#8B5CF6", // Violet 500
+                        "background-light": "#F6F9FB", // Very light cool gray/blueish white from reference
+                        "background-dark": "#0F172A",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1E293B",
+                        "text-main": "#0f172a", // Slate 900
+                        "text-muted": "#64748b", // Slate 500
+                    },
+                    fontFamily: {
+                        display: ["'Plus Jakarta Sans'", "sans-serif"],
+                        body: ["'Plus Jakarta Sans'", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                        'xl': "1rem",
+                        '2xl': "1.5rem",
+                    },
+                    backgroundImage: {
+                        'dot-pattern': "radial-gradient(#CBD5E1 1px, transparent 1px)", // Subtle dot pattern
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        .bg-dot-pattern {
+            background-size: 24px 24px;
+        }.glow-effect {
+             background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+    </style>
+</head>
+<body class="font-body bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 transition-colors duration-300 min-h-screen flex flex-col">
+<div class="fixed inset-0 z-0 pointer-events-none bg-dot-pattern opacity-40 dark:opacity-10"></div>
+<div class="fixed inset-0 z-0 pointer-events-none glow-effect"></div>
+<div class="fixed top-0 left-0 w-full h-[500px] bg-gradient-to-b from-white/80 to-transparent z-0 pointer-events-none"></div>
+<main class="relative z-10 flex-grow flex items-center justify-center">
+<section class="py-20 lg:py-28 relative w-full">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-20">
+<div class="inline-flex items-center justify-center px-4 py-1.5 mb-8 rounded-full bg-white shadow-sm border border-slate-100 text-sm font-semibold text-primary">
+<span class="w-2 h-2 rounded-full bg-primary mr-2"></span>
+                        Why Choose Pecify?
+                    </div>
+<h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-text-main dark:text-white mb-6 leading-tight">
+                        Everything You Need for <br class="hidden md:block"/>
+<span class="text-primary">Payment Success</span>
+</h2>
+<p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-text-muted dark:text-slate-400 font-medium leading-relaxed">
+                        Powerful features designed to simplify payments and accelerate your business growth with our seamless gateway.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+<div class="group relative p-8 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-[0_2px_10px_-4px_rgba(6,81,237,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(6,81,237,0.1)] border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1">
+<div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-900/30 text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-3">
+                            Instant Payment Collection
+                        </h3>
+<p class="text-text-muted dark:text-slate-400 leading-relaxed text-sm">
+                            Collect payments instantly via UPI from all major apps with seamless integration.
+                        </p>
+</div>
+<div class="group relative p-8 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-[0_2px_10px_-4px_rgba(6,81,237,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(6,81,237,0.1)] border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1">
+<div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-900/30 text-secondary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-2xl">verified_user</span>
+</div>
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-3">
+                            Secure &amp; Compliant
+                        </h3>
+<p class="text-text-muted dark:text-slate-400 leading-relaxed text-sm">
+                            RBI-certified platform with bank-grade security and PCI DSS compliance.
+                        </p>
+</div>
+<div class="group relative p-8 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-[0_2px_10px_-4px_rgba(6,81,237,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(6,81,237,0.1)] border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1">
+<div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-2xl">trending_up</span>
+</div>
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-3">
+                            Higher Success Rates
+                        </h3>
+<p class="text-text-muted dark:text-slate-400 leading-relaxed text-sm">
+                            Achieve 98%+ transaction success rates with our optimized payment flows.
+                        </p>
+</div>
+<div class="group relative p-8 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-[0_2px_10px_-4px_rgba(6,81,237,0.1)] hover:shadow-[0_8px_30px_-4px_rgba(6,81,237,0.1)] border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:-translate-y-1">
+<div class="w-12 h-12 inline-flex items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-2xl">currency_rupee</span>
+</div>
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-3">
+                            Real-time Settlements
+                        </h3>
+<p class="text-text-muted dark:text-slate-400 leading-relaxed text-sm">
+                            Get funds settled instantly without waiting for T+2 days.
+                        </p>
+</div>
+</div>
+<div class="mt-20 text-center">
+<a class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-primary border border-transparent rounded-lg shadow-lg shadow-primary/25 hover:bg-violet-700 hover:shadow-primary/40 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" href="#">
+                        Get Started with Pecify
+                        <span class="material-symbols-outlined ml-2 text-xl">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+</body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pecify Login Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00a082", 
+              "primary-dark": "#008a6f",
+              "background-light": "#f4f8f6",
+              "background-dark": "#121816",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1e2826",
+              "pecify-purple": "#8B5CF6",
+              "pecify-blue": "#7C3AED",
+              "pecify-dark": "#6D28D9",
+              "pecify-gradient-start": "#4C1D95",
+              "pecify-gradient-end": "#8B5CF6",
+            },
+            fontFamily: {
+              display: ['"DM Serif Display"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              'xl': '1rem',
+              '2xl': '1.5rem',
+            },
+            backgroundImage: {
+              'dot-pattern': "radial-gradient(#CBD5E1 1px, transparent 1px)",
+              'dot-pattern-dark': "radial-gradient(#334155 1px, transparent 1px)",
+            }
+          },
+        },
+      };
+    </script>
+<style>
+        .curved-line {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .gradient-btn {
+            background: linear-gradient(90deg, #8B5CF6 0%, #7C3AED 100%);
+        }
+        .gradient-btn:hover {
+            background: linear-gradient(90deg, #7C3AED 0%, #6D28D9 100%);
+        }
+        .bg-dots {
+            background-size: 24px 24px;
+        }
+        .login-visual-bg {
+             background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-sans antialiased transition-colors duration-300 min-h-screen flex flex-col md:flex-row h-screen overflow-hidden">
+<div class="hidden md:flex md:w-1/2 lg:w-5/12 xl:w-5/12 login-visual-bg relative flex-col justify-between p-12 text-white overflow-hidden">
+<div class="absolute inset-0 bg-dots bg-dot-pattern opacity-[0.1] pointer-events-none"></div>
+<div class="absolute top-1/4 -right-20 w-80 h-80 bg-white opacity-5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-1/4 -left-20 w-60 h-60 bg-pecify-purple opacity-20 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<span class="text-4xl font-bold font-display tracking-tight text-white">Pecify</span>
+</div>
+<div class="relative z-10 space-y-6 mb-12">
+<div class="inline-block bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium tracking-wide border border-white/20 mb-2">
+            NEW UPDATE
+        </div>
+<h1 class="text-4xl lg:text-5xl font-display font-bold leading-tight">
+            Powering Payments.<br/>Scaling Businesses.
+        </h1>
+<p class="text-lg text-white/80 max-w-md">
+            Experience the future of seamless transactions with our unified payment stack designed for growth.
+        </p>
+<div class="pt-4">
+<a class="inline-flex items-center text-sm font-semibold hover:text-white/80 transition-colors group" href="#">
+                LEARN MORE 
+                <span class="material-symbols-outlined ml-1 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<main class="w-full md:w-1/2 lg:w-7/12 xl:w-7/12 flex flex-col items-center justify-center relative p-6 overflow-y-auto">
+<div class="absolute inset-0 bg-dots bg-dot-pattern dark:bg-dot-pattern-dark opacity-[0.4] pointer-events-none -z-10"></div>
+<div class="md:hidden absolute top-6 left-6">
+<span class="text-3xl font-bold font-display tracking-tight text-pecify-purple">Pecify</span>
+</div>
+<div class="w-full max-w-md bg-surface-light dark:bg-surface-dark p-8 md:p-10 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 relative">
+<div class="mb-8">
+<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Login to your Pecify account</h2>
+</div>
+<form class="space-y-6">
+<div class="space-y-1">
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">Email</label>
+<input class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-background-dark dark:text-white shadow-sm focus:border-pecify-purple focus:ring focus:ring-pecify-purple focus:ring-opacity-20 transition-shadow h-12" id="email" placeholder="Enter your email" type="email"/>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="password">Password</label>
+<div class="relative">
+<input class="w-full rounded-lg border-gray-300 dark:border-gray-700 dark:bg-background-dark dark:text-white shadow-sm focus:border-pecify-purple focus:ring focus:ring-pecify-purple focus:ring-opacity-20 transition-shadow pr-10 h-12" id="password" placeholder="Enter your password" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" type="button">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-end">
+<a class="text-sm font-medium text-pecify-purple hover:text-pecify-blue hover:underline transition-colors" href="#">Forgot Password?</a>
+</div>
+<div class="pt-2">
+<button class="w-full gradient-btn text-white py-3 px-4 rounded-lg font-bold shadow-lg shadow-pecify-purple/30 hover:shadow-xl hover:shadow-pecify-purple/40 transition-all transform hover:-translate-y-0.5 text-center uppercase tracking-wide text-sm" type="submit">
+                    Login
+                </button>
+</div>
+<div class="pt-4 text-center">
+<p class="text-sm text-gray-600 dark:text-gray-400">
+                    Don't have an account with Pecify? <a class="font-semibold text-pecify-purple hover:text-pecify-blue hover:underline transition-colors" href="#">Sign Up</a>
+</p>
+</div>
+</form>
+</div>
+</main>
+<button class="fixed bottom-6 right-6 z-50 bg-gray-900 dark:bg-white text-white dark:text-gray-900 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">chat_bubble_outline</span>
+</button>
+</body></html>
