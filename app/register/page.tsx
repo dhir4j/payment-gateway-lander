@@ -332,6 +332,26 @@ const PasswordHint = styled.p`
   gap: 0.25rem;
 `;
 
+const ErrorMessage = styled.div`
+  padding: 0.875rem;
+  background: #FEE2E2;
+  border: 1px solid #EF4444;
+  border-radius: 0.5rem;
+  color: #DC2626;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+`;
+
+const SuccessMessage = styled.div`
+  padding: 0.875rem;
+  background: #D1FAE5;
+  border: 1px solid #10B981;
+  border-radius: 0.5rem;
+  color: #059669;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+`;
+
 const SubmitButton = styled.button`
   width: 100%;
   padding: 0.75rem;
@@ -404,25 +424,53 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const { register } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
     setLoading(true);
 
-    const success = await register({
-      email,
-      password,
-      full_name: fullName,
-      company_name: companyName,
-      phone,
-    });
-
-    if (success) {
-      router.push('/dashboard');
+    // Basic validation
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      setLoading(false);
+      return;
     }
-    setLoading(false);
+
+    if (!email || !fullName || !companyName || !phone) {
+      setError('Please fill in all required fields');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const result = await register({
+        email,
+        password,
+        full_name: fullName,
+        company_name: companyName,
+        phone,
+      });
+
+      if (result) {
+        setSuccess('Account created successfully! Redirecting to dashboard...');
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 2000);
+      } else {
+        setError('Registration failed. Email may already be in use or server is unavailable.');
+      }
+    } catch (err) {
+      console.error('Registration error:', err);
+      setError('An error occurred during registration. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -503,6 +551,9 @@ export default function RegisterPage() {
               <h2>Create your Pecify account</h2>
               <p>Start accepting payments in minutes</p>
             </FormTitle>
+
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+            {success && <SuccessMessage>{success}</SuccessMessage>}
 
             <Form onSubmit={handleSubmit}>
               <FormRow>

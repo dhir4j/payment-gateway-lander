@@ -152,10 +152,10 @@ const Footer = () => {
             />
           </LogoContainer>
           <FooterAddress>
-            7th Floor, Block E-12/8,<br />
-            Vrindavan Tower, Sanjay Palace,<br />
-            Agra, Uttar Pradesh<br />
-            Phone: +91 97588 13335
+            434, SHIVEN SQUARE, NR., BLUE LIFE,<br />
+            Adajan, Surat-395009<br />
+            Phone: +919313417507<br />
+            Email: pecifypvtltd@gmail.com
           </FooterAddress>
           <SocialLinks>
             <SocialIcon
@@ -189,7 +189,7 @@ const Footer = () => {
               <FiLinkedin />
             </SocialIcon>
             <SocialIcon
-              href="mailto:contact@pecifysolution.com"
+              href="mailto:pecifypvtltd@gmail.com"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Email"
@@ -232,7 +232,7 @@ const Footer = () => {
       </FooterContent>
 
       <FooterBottom>
-        <p>© {currentYear} Pecify Solution. All rights reserved.</p>
+        <p>© {currentYear} Pecify infra payment solution private limited. All rights reserved.</p>
         <p style={{ marginTop: '0.5rem' }}>
           Built with Next.js & Styled Components
         </p>

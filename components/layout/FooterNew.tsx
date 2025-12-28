@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import Link from 'next/link';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaMapMarkerAlt, FaPhoneAlt, FaShieldAlt, FaLock } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaShieldAlt, FaLock } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
   background: ${({ theme }) => theme.colors.surface};
@@ -257,13 +257,17 @@ const FooterNew = () => {
               <ContactItem>
                 <FaMapMarkerAlt />
                 <p>
-                  7th Floor, Block E-12/8, Vrindavan Tower,<br />
-                  Sanjay Palace, Agra, Uttar Pradesh
+                  434, SHIVEN SQUARE, NR., BLUE LIFE,<br />
+                  Adajan, Surat-395009
                 </p>
               </ContactItem>
               <ContactItem>
                 <FaPhoneAlt />
-                <p>+91 97588 13335</p>
+                <p>+919313417507</p>
+              </ContactItem>
+              <ContactItem>
+                <FaEnvelope />
+                <p>pecifypvtltd@gmail.com</p>
               </ContactItem>
             </ContactInfo>
 
@@ -288,7 +292,7 @@ const FooterNew = () => {
         </Grid>
 
         <BottomBar>
-          <Copyright>© 2024 Pecify. All rights reserved.</Copyright>
+          <Copyright>© 2024 Pecify infra payment solution private limited. All rights reserved.</Copyright>
           <Badges>
             <Badge>
               <FaShieldAlt /> PCI DSS Compliant

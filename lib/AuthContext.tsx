@@ -45,7 +45,7 @@ interface AuthProviderProps {
 }
 
 // Use your backend API URL
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.server.davspay.com/api';
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -67,6 +67,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
+      console.log('Logging in with API:', API_URL);
       const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
@@ -76,6 +77,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       });
 
       const data = await response.json();
+      console.log('Login response:', data);
 
       if (response.ok && data.success) {
         const { user, access_token } = data.data;
@@ -86,6 +88,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return true;
       }
 
+      console.error('Login failed:', data);
       return false;
     } catch (error) {
       console.error('Login error:', error);
@@ -95,6 +98,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const register = async (data: RegisterData): Promise<boolean> => {
     try {
+      console.log('Registering with API:', API_URL);
       const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: {
@@ -104,6 +108,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       });
 
       const result = await response.json();
+      console.log('Registration response:', result);
 
       if (response.ok && result.success) {
         const { user, access_token } = result.data;
@@ -114,6 +119,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return true;
       }
 
+      console.error('Registration failed:', result);
       return false;
     } catch (error) {
       console.error('Registration error:', error);
