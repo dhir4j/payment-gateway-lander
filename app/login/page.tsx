@@ -466,28 +466,15 @@ const CheckboxWrapper = styled.div`
   }
 `;
 
-const OtpInfo = styled.div`
-  padding: 0.875rem;
-  background: ${({ theme }) => theme.colors.primary}10;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 0.5rem;
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
-  text-align: center;
-`;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.server.davspay.com/api';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [otp, setOtp] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showOtpInput, setShowOtpInput] = useState(false);
-  const [sessionId, setSessionId] = useState('');
-  const [userPhone, setUserPhone] = useState('');
   const { login } = useAuth();
   const router = useRouter();
 
@@ -497,66 +484,11 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // If OTP step, verify OTP
-      if (showOtpInput) {
-        const otpResponse = await fetch('http://localhost:5000/api/auth/verify-otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId, otp })
-        });
-
-        const otpData = await otpResponse.json();
-
-        if (otpData.success) {
-          // OTP verified, now complete login
-          const success = await login(email, password, rememberMe);
-          if (success) {
-            router.push('/dashboard');
-          } else {
-            setError('Login failed. Please try again.');
-          }
-        } else {
-          setError(otpData.message || 'Invalid OTP');
-        }
+      const success = await login(email, password, rememberMe);
+      if (success) {
+        router.push('/dashboard');
       } else {
-        // First, verify credentials
-        const loginResponse = await fetch('http://localhost:5000/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
-        });
-
-        const loginData = await loginResponse.json();
-
-        if (loginData.success && loginData.data?.user?.phone) {
-          // User has phone number, send OTP
-          const phone = loginData.data.user.phone;
-          setUserPhone(phone);
-
-          const otpResponse = await fetch('http://localhost:5000/api/auth/send-otp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone })
-          });
-
-          const otpData = await otpResponse.json();
-
-          if (otpData.success) {
-            setSessionId(otpData.session_id);
-            setShowOtpInput(true);
-            setError('');
-          } else {
-            setError(otpData.message || 'Failed to send OTP');
-          }
-        } else if (loginData.success) {
-          // No phone number, login directly
-          const success = await login(email, password, rememberMe);
-          if (success) {
-            router.push('/dashboard');
-          }
-        } else {
-          setError(loginData.message || 'Invalid email or password');
-        }
+        setError('Invalid email or password');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
@@ -613,71 +545,53 @@ export default function LoginPage() {
           </FormTitle>
 
           {error && <ErrorMessage>{error}</ErrorMessage>}
-          {showOtpInput && <OtpInfo>OTP sent to {userPhone}. Please enter the code below.</OtpInfo>}
 
           <Form onSubmit={handleSubmit}>
-            {!showOtpInput ? (
-              <>
-                <FormGroup>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </FormGroup>
+            <FormGroup>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </FormGroup>
 
-                <FormGroup>
-                  <Label htmlFor="password">Password</Label>
-                  <PasswordWrapper>
-                    <Input
-                      id="password"
-                      type={showPassword ? 'text' : 'password'}
-                      placeholder="Enter your password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                    <button type="button" onClick={() => setShowPassword(!showPassword)}>
-                      {showPassword ? <FiEyeOff /> : <FiEye />}
-                    </button>
-                  </PasswordWrapper>
-                </FormGroup>
-
-                <CheckboxWrapper>
-                  <input
-                    type="checkbox"
-                    id="rememberMe"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                  />
-                  <label htmlFor="rememberMe">Remember me for 30 days</label>
-                </CheckboxWrapper>
-
-                <ForgotPassword>
-                  <Link href="#">Forgot Password?</Link>
-                </ForgotPassword>
-              </>
-            ) : (
-              <FormGroup>
-                <Label htmlFor="otp">Enter OTP</Label>
+            <FormGroup>
+              <Label htmlFor="password">Password</Label>
+              <PasswordWrapper>
                 <Input
-                  id="otp"
-                  type="text"
-                  placeholder="Enter 6-digit OTP"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  maxLength={6}
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
-              </FormGroup>
-            )}
+                <button type="button" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                </button>
+              </PasswordWrapper>
+            </FormGroup>
+
+            <CheckboxWrapper>
+              <input
+                type="checkbox"
+                id="rememberMe"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <label htmlFor="rememberMe">Remember me for 30 days</label>
+            </CheckboxWrapper>
+
+            <ForgotPassword>
+              <Link href="#">Forgot Password?</Link>
+            </ForgotPassword>
 
             <SubmitButton type="submit" disabled={loading}>
-              {loading ? (showOtpInput ? 'Verifying OTP...' : 'Logging in...') : (showOtpInput ? 'Verify OTP' : 'Login')}
+              {loading ? 'Logging in...' : 'Login'}
             </SubmitButton>
 
             <SignupPrompt>
