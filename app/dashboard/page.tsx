@@ -6,12 +6,13 @@ import {
   FiTrendingUp,
   FiDollarSign,
   FiCheckCircle,
-  FiClock,
-  FiRefreshCw,
-  FiArrowRight,
   FiActivity,
   FiCreditCard,
-  FiShield
+  FiShield,
+  FiArrowUpRight,
+  FiZap,
+  FiUsers,
+  FiBarChart2
 } from 'react-icons/fi';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { useAuth } from '@/lib/AuthContext';
@@ -34,118 +35,121 @@ export default function DashboardPage() {
 
   const stats = [
     {
-      label: 'Total Volume',
+      label: 'Total Revenue',
       value: '₹0.00',
       change: '+0%',
-      subtitle: 'vs last month',
+      subtitle: 'from last month',
       positive: true,
       icon: <FiDollarSign />,
-      color: '#3B82F6',
+      gradient: 'linear-gradient(135deg, #D946EF 0%, #EC4899 100%)',
     },
     {
       label: 'Success Rate',
       value: '0%',
       change: '+0%',
-      subtitle: 'Transaction success',
+      subtitle: 'transaction success',
       positive: true,
       icon: <FiCheckCircle />,
-      color: '#10B981',
+      gradient: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
     },
     {
-      label: 'Active Collections',
+      label: 'Active Users',
       value: '0',
       change: '+0',
-      subtitle: 'Active payment links',
+      subtitle: 'active customers',
+      positive: true,
+      icon: <FiUsers />,
+      gradient: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)',
+    },
+    {
+      label: 'Total Transactions',
+      value: '0',
+      change: '+0',
+      subtitle: 'processed today',
       positive: true,
       icon: <FiActivity />,
-      color: '#F59E0B',
-    },
-    {
-      label: 'Virtual Accounts',
-      value: '0',
-      change: '+0',
-      subtitle: 'Active VAs',
-      positive: true,
-      icon: <FiCreditCard />,
-      color: '#8B5CF6',
+      gradient: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
     },
   ];
 
   const quickActions = [
     {
       title: 'Create Payment Link',
-      description: 'Generate instant payment links to collect payments from customers',
-      icon: <FiDollarSign />,
+      description: 'Instantly generate secure payment links for your customers',
+      icon: <FiZap />,
       href: '/dashboard/payment-links',
-      color: '#3B82F6',
+      gradient: 'linear-gradient(135deg, #D946EF 0%, #EC4899 100%)',
     },
     {
       title: 'Virtual Accounts',
-      description: 'View and manage your virtual account transactions and settlements',
+      description: 'Manage virtual accounts and track all your transactions',
       icon: <FiCreditCard />,
       href: '/dashboard/virtual-accounts/transactions',
-      color: '#10B981',
+      gradient: 'linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%)',
     },
     {
-      title: 'Transaction Reports',
-      description: 'Generate detailed reports and analytics for your transactions',
-      icon: <FiTrendingUp />,
+      title: 'Analytics & Reports',
+      description: 'Get detailed insights and export comprehensive reports',
+      icon: <FiBarChart2 />,
       href: '/dashboard/reports',
-      color: '#8B5CF6',
-    },
-  ];
-
-  const recentActivity = [
-    {
-      type: 'info',
-      message: 'Welcome to DavsPay! Complete your verification to start accepting payments.',
-      time: 'Just now',
+      gradient: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)',
     },
   ];
 
   return (
     <DashboardLayout>
       <PageHeader>
-        <HeaderContent>
-          <WelcomeText>Welcome back, {user?.full_name || 'User'}!</WelcomeText>
-          <PageTitle>Dashboard Overview</PageTitle>
-          <PageSubtitle>
-            Monitor your payment infrastructure, track transactions, and manage your account
-          </PageSubtitle>
-        </HeaderContent>
-        <HeaderActions>
-          <PrimaryButton onClick={() => router.push('/dashboard/verification')}>
+        <WelcomeBadge>
+          <FiZap />
+          Welcome back!
+        </WelcomeBadge>
+        <HeaderTop>
+          <HeaderContent>
+            <PageTitle>Hello, {user?.full_name || 'User'}!</PageTitle>
+            <PageSubtitle>
+              Track your payment performance and manage your business operations from one place
+            </PageSubtitle>
+          </HeaderContent>
+          <VerifyButton onClick={() => router.push('/dashboard/verification')}>
             <FiShield />
-            Complete Verification
-          </PrimaryButton>
-        </HeaderActions>
+            Complete KYC
+          </VerifyButton>
+        </HeaderTop>
       </PageHeader>
 
       <StatsGrid>
         {stats.map((stat, index) => (
           <StatCard
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: index * 0.1 }}
+            $gradient={stat.gradient}
           >
-            <StatHeader>
-              <StatIcon $color={stat.color}>{stat.icon}</StatIcon>
-            </StatHeader>
-            <StatLabel>{stat.label}</StatLabel>
-            <StatValue>{stat.value}</StatValue>
-            <StatFooter>
-              <StatChange $positive={stat.positive}>
-                {stat.positive ? '↑' : '↓'} {stat.change}
-              </StatChange>
-              <StatSubtitle>{stat.subtitle}</StatSubtitle>
-            </StatFooter>
+            <StatIconWrapper>
+              {stat.icon}
+            </StatIconWrapper>
+            <StatContent>
+              <StatLabel>{stat.label}</StatLabel>
+              <StatValue>{stat.value}</StatValue>
+              <StatFooter>
+                <StatChange $positive={stat.positive}>
+                  <FiTrendingUp />
+                  {stat.change}
+                </StatChange>
+                <StatSubtitle>{stat.subtitle}</StatSubtitle>
+              </StatFooter>
+            </StatContent>
           </StatCard>
         ))}
       </StatsGrid>
 
-      <SectionTitle>Quick Actions</SectionTitle>
-      <QuickActionsGrid>
+      <SectionHeader>
+        <SectionTitle>Quick Actions</SectionTitle>
+        <SectionSubtitle>Get started with these common tasks</SectionSubtitle>
+      </SectionHeader>
+
+      <ActionsGrid>
         {quickActions.map((action, index) => (
           <ActionCard
             key={index}
@@ -153,76 +157,115 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 + index * 0.1 }}
             onClick={() => router.push(action.href)}
-            $color={action.color}
+            $gradient={action.gradient}
           >
-            <ActionIconWrapper $color={action.color}>
+            <ActionGradientBg $gradient={action.gradient} />
+            <ActionIconCircle>
               {action.icon}
-            </ActionIconWrapper>
-            <ActionContent>
-              <ActionTitle>{action.title}</ActionTitle>
-              <ActionDescription>{action.description}</ActionDescription>
-            </ActionContent>
-            <ActionArrow>
-              <FiArrowRight />
-            </ActionArrow>
+            </ActionIconCircle>
+            <ActionTitle>{action.title}</ActionTitle>
+            <ActionDescription>{action.description}</ActionDescription>
+            <ActionLink>
+              Get Started
+              <FiArrowUpRight />
+            </ActionLink>
           </ActionCard>
         ))}
-      </QuickActionsGrid>
+      </ActionsGrid>
 
-      <TwoColumnLayout>
-        <Column>
-          <SectionTitle>Recent Activity</SectionTitle>
+      <TwoColumnGrid>
+        <ActivitySection>
+          <SectionHeader>
+            <SectionTitle>Recent Activity</SectionTitle>
+            <SectionSubtitle>Your latest transactions and updates</SectionSubtitle>
+          </SectionHeader>
           <ActivityCard>
-            {recentActivity.map((activity, index) => (
-              <ActivityItem key={index}>
-                <ActivityDot $type={activity.type} />
-                <ActivityContent>
-                  <ActivityMessage>{activity.message}</ActivityMessage>
-                  <ActivityTime>{activity.time}</ActivityTime>
-                </ActivityContent>
-              </ActivityItem>
-            ))}
-            <EmptyState>
+            <WelcomeActivity>
+              <ActivityIcon $gradient="linear-gradient(135deg, #D946EF 0%, #EC4899 100%)">
+                <FiZap />
+              </ActivityIcon>
+              <ActivityContent>
+                <ActivityTitle>Welcome to Pecify!</ActivityTitle>
+                <ActivityText>Complete your KYC verification to start accepting payments</ActivityText>
+                <ActivityTime>Just now</ActivityTime>
+              </ActivityContent>
+            </WelcomeActivity>
+            <EmptyActivity>
               <EmptyIcon><FiActivity /></EmptyIcon>
-              <EmptyText>No recent transactions</EmptyText>
-              <EmptySubtext>Your recent payment activities will appear here</EmptySubtext>
-            </EmptyState>
+              <EmptyTitle>No transactions yet</EmptyTitle>
+              <EmptyText>Your payment activities and transaction history will appear here</EmptyText>
+            </EmptyActivity>
           </ActivityCard>
-        </Column>
+        </ActivitySection>
 
-        <Column>
-          <SectionTitle>Account Status</SectionTitle>
+        <StatusSection>
+          <SectionHeader>
+            <SectionTitle>Account Overview</SectionTitle>
+            <SectionSubtitle>Your account status and details</SectionSubtitle>
+          </SectionHeader>
           <StatusCard>
-            <StatusItem>
-              <StatusLabel>Verification Status</StatusLabel>
-              <StatusBadge $status="pending">Pending Verification</StatusBadge>
-            </StatusItem>
-            <StatusItem>
-              <StatusLabel>API Access</StatusLabel>
-              <StatusBadge $status="active">Active</StatusBadge>
-            </StatusItem>
-            <StatusItem>
-              <StatusLabel>Available Credits</StatusLabel>
-              <StatusValue>₹0.00</StatusValue>
-            </StatusItem>
+            <StatusRow>
+              <StatusLabel>
+                <StatusLabelIcon><FiShield /></StatusLabelIcon>
+                KYC Status
+              </StatusLabel>
+              <StatusBadge $status="warning">Pending</StatusBadge>
+            </StatusRow>
+            <StatusRow>
+              <StatusLabel>
+                <StatusLabelIcon><FiCheckCircle /></StatusLabelIcon>
+                API Status
+              </StatusLabel>
+              <StatusBadge $status="success">Active</StatusBadge>
+            </StatusRow>
+            <StatusRow>
+              <StatusLabel>
+                <StatusLabelIcon><FiDollarSign /></StatusLabelIcon>
+                Available Balance
+              </StatusLabel>
+              <StatusAmount>₹0.00</StatusAmount>
+            </StatusRow>
             <StatusDivider />
-            <StatusAction onClick={() => router.push('/dashboard/credits')}>
-              <span>Add Credits</span>
-              <FiArrowRight />
-            </StatusAction>
+            <AddCreditsButton onClick={() => router.push('/dashboard/credits')}>
+              <FiZap />
+              Add Credits
+              <FiArrowUpRight />
+            </AddCreditsButton>
           </StatusCard>
-        </Column>
-      </TwoColumnLayout>
+        </StatusSection>
+      </TwoColumnGrid>
     </DashboardLayout>
   );
 }
 
-// Styled Components
+// Styled Components - Unique Pecify Design
 const PageHeader = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+`;
+
+const WelcomeBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+  padding: 0.5rem 1rem;
+  background: ${({ theme }) => theme.colors.gradient};
+  color: white;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.primary}30;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
+const HeaderTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: ${({ theme }) => theme.spacing.xxl};
   gap: ${({ theme }) => theme.spacing.xl};
 
   @media (max-width: 968px) {
@@ -234,118 +277,110 @@ const HeaderContent = styled.div`
   flex: 1;
 `;
 
-const WelcomeText = styled.div`
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme.colors.primary};
-  font-weight: 600;
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-`;
-
 const PageTitle = styled.h1`
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
-  font-family: ${({ theme }) => theme.fonts.primary};
+  font-family: ${({ theme }) => theme.fonts.secondary};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
+  background: ${({ theme }) => theme.colors.gradient};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 `;
 
 const PageSubtitle = styled.p`
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: ${({ theme }) => theme.colors.textSecondary};
-  line-height: 1.6;
-  max-width: 600px;
+  line-height: 1.7;
+  max-width: 650px;
 `;
 
-const HeaderActions = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const PrimaryButton = styled.button`
+const VerifyButton = styled.button`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.sm};
-  padding: 0.875rem 1.5rem;
+  padding: 1rem 2rem;
   background: ${({ theme }) => theme.colors.gradient};
   color: white;
   border: none;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  font-size: 0.9375rem;
+  border-radius: 100px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px ${({ theme }) => theme.colors.primary}40;
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 8px 30px ${({ theme }) => theme.colors.primary}50;
   }
 `;
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: ${({ theme }) => theme.spacing.lg};
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: ${({ theme }) => theme.spacing.xl};
   margin-bottom: ${({ theme }) => theme.spacing.xxl};
 `;
 
-const StatCard = styled(motion.div)`
-  background: ${({ theme }) => theme.colors.surface};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+const StatCard = styled(motion.div)<{ $gradient: string }>`
+  background: white;
+  border-radius: 20px;
   padding: ${({ theme }) => theme.spacing.xl};
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background-image: linear-gradient(white, white), ${({ $gradient }) => $gradient};
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
 `;
 
-const StatHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-`;
-
-const StatIcon = styled.div<{ $color: string }>`
-  width: 48px;
-  height: 48px;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  background: ${({ $color }) => $color}15;
-  color: ${({ $color }) => $color};
+const StatIconWrapper = styled.div`
+  width: 56px;
+  height: 56px;
+  background: ${({ theme }) => theme.colors.gradient};
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 
   svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 `;
+
+const StatContent = styled.div``;
 
 const StatLabel = styled.div`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.colors.textSecondary};
-  font-weight: 500;
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const StatValue = styled.div`
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
-  font-family: ${({ theme }) => theme.fonts.primary};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  font-family: ${({ theme }) => theme.fonts.secondary};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
 `;
 
 const StatFooter = styled.div`
@@ -355,103 +390,136 @@ const StatFooter = styled.div`
 `;
 
 const StatChange = styled.div<{ $positive: boolean }>`
-  font-size: 0.875rem;
-  color: ${({ $positive, theme }) => ($positive ? theme.colors.success : theme.colors.error)};
-  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: ${({ $positive, theme }) => ($positive ? theme.colors.success : theme.colors.error)};
+  font-weight: 700;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 const StatSubtitle = styled.div`
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
-const SectionTitle = styled.h2`
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.text};
-  font-family: ${({ theme }) => theme.fonts.primary};
+const SectionHeader = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
-const QuickActionsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: ${({ theme }) => theme.spacing.lg};
-  margin-bottom: ${({ theme }) => theme.spacing.xxl};
-`;
-
-const ActionCard = styled(motion.div)<{ $color: string }>`
-  background: ${({ theme }) => theme.colors.surface};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  padding: ${({ theme }) => theme.spacing.xl};
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg};
-
-  &:hover {
-    border-color: ${({ $color }) => $color};
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transform: translateY(-4px);
-
-    svg {
-      transform: translateX(4px);
-    }
-  }
-`;
-
-const ActionIconWrapper = styled.div<{ $color: string }>`
-  width: 56px;
-  height: 56px;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  background: ${({ $color }) => $color}15;
-  color: ${({ $color }) => $color};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  svg {
-    width: 28px;
-    height: 28px;
-  }
-`;
-
-const ActionContent = styled.div`
-  flex: 1;
-`;
-
-const ActionTitle = styled.h3`
-  font-size: 1.125rem;
-  font-weight: 600;
+const SectionTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.secondary};
   margin-bottom: ${({ theme }) => theme.spacing.xs};
 `;
 
-const ActionDescription = styled.p`
-  font-size: 0.875rem;
+const SectionSubtitle = styled.p`
+  font-size: 0.9375rem;
   color: ${({ theme }) => theme.colors.textSecondary};
-  line-height: 1.5;
 `;
 
-const ActionArrow = styled.div`
-  color: ${({ theme }) => theme.colors.textSecondary};
-  transition: all 0.3s ease;
+const ActionsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: ${({ theme }) => theme.spacing.xl};
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+`;
 
-  svg {
-    width: 20px;
-    height: 20px;
+const ActionCard = styled(motion.div)<{ $gradient: string }>`
+  background: white;
+  border-radius: 24px;
+  padding: ${({ theme }) => theme.spacing.xxl};
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid ${({ theme }) => theme.colors.border};
+
+  &:hover {
+    transform: translateY(-8px);
+    border-color: transparent;
+    box-shadow: 0 20px 40px rgba(217, 70, 239, 0.2);
   }
 `;
 
-const TwoColumnLayout = styled.div`
+const ActionGradientBg = styled.div<{ $gradient: string }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: ${({ $gradient }) => $gradient};
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  ${ActionCard}:hover & {
+    opacity: 1;
+    height: 100%;
+    opacity: 0.05;
+  }
+`;
+
+const ActionIconCircle = styled.div`
+  width: 64px;
+  height: 64px;
+  background: ${({ theme }) => theme.colors.gradient};
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+`;
+
+const ActionTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  font-family: ${({ theme }) => theme.fonts.secondary};
+`;
+
+const ActionDescription = styled.p`
+  font-size: 0.9375rem;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  line-height: 1.6;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+`;
+
+const ActionLink = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: 600;
+  font-size: 0.9375rem;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  ${ActionCard}:hover & svg {
+    transform: translate(4px, -4px);
+  }
+`;
+
+const TwoColumnGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 1.5fr 1fr;
   gap: ${({ theme }) => theme.spacing.xl};
 
   @media (max-width: 968px) {
@@ -459,55 +527,68 @@ const TwoColumnLayout = styled.div`
   }
 `;
 
-const Column = styled.div``;
+const ActivitySection = styled.div``;
+const StatusSection = styled.div``;
 
 const ActivityCard = styled.div`
-  background: ${({ theme }) => theme.colors.surface};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  background: white;
+  border-radius: 20px;
   padding: ${({ theme }) => theme.spacing.xl};
-  min-height: 300px;
+  border: 2px solid ${({ theme }) => theme.colors.border};
+  min-height: 400px;
 `;
 
-const ActivityItem = styled.div`
+const WelcomeActivity = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-  padding: ${({ theme }) => theme.spacing.md} 0;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-
-  &:last-child {
-    border-bottom: none;
-  }
+  gap: ${({ theme }) => theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.lg};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  border-radius: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
 `;
 
-const ActivityDot = styled.div<{ $type: string }>`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: ${({ $type, theme }) =>
-    $type === 'success' ? theme.colors.success :
-    $type === 'error' ? theme.colors.error :
-    theme.colors.primary};
-  margin-top: 6px;
+const ActivityIcon = styled.div<{ $gradient: string }>`
+  width: 48px;
+  height: 48px;
+  background: ${({ $gradient }) => $gradient};
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const ActivityContent = styled.div`
   flex: 1;
 `;
 
-const ActivityMessage = styled.div`
-  font-size: 0.9375rem;
+const ActivityTitle = styled.div`
+  font-size: 1rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: ${({ theme }) => theme.spacing.xs};
 `;
 
-const ActivityTime = styled.div`
-  font-size: 0.8125rem;
+const ActivityText = styled.div`
+  font-size: 0.875rem;
   color: ${({ theme }) => theme.colors.textSecondary};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  line-height: 1.5;
 `;
 
-const EmptyState = styled.div`
+const ActivityTime = styled.div`
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font-weight: 600;
+`;
+
+const EmptyActivity = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -517,73 +598,94 @@ const EmptyState = styled.div`
 `;
 
 const EmptyIcon = styled.div`
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
+  width: 80px;
+  height: 80px;
   background: ${({ theme }) => theme.colors.backgroundSecondary};
-  color: ${({ theme }) => theme.colors.textSecondary};
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
 
   svg {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
   }
 `;
 
-const EmptyText = styled.div`
-  font-size: 1rem;
-  font-weight: 600;
+const EmptyTitle = styled.div`
+  font-size: 1.125rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: ${({ theme }) => theme.spacing.xs};
 `;
 
-const EmptySubtext = styled.div`
-  font-size: 0.875rem;
+const EmptyText = styled.div`
+  font-size: 0.9375rem;
   color: ${({ theme }) => theme.colors.textSecondary};
+  max-width: 300px;
 `;
 
 const StatusCard = styled.div`
-  background: ${({ theme }) => theme.colors.surface};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  background: white;
+  border-radius: 20px;
   padding: ${({ theme }) => theme.spacing.xl};
+  border: 2px solid ${({ theme }) => theme.colors.border};
 `;
 
-const StatusItem = styled.div`
+const StatusRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: ${({ theme }) => theme.spacing.md} 0;
+  padding: ${({ theme }) => theme.spacing.lg} 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+
+  &:last-of-type {
+    border-bottom: none;
+  }
 `;
 
 const StatusLabel = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
   font-size: 0.9375rem;
-  color: ${({ theme }) => theme.colors.textSecondary};
-  font-weight: 500;
+  color: ${({ theme }) => theme.colors.text};
+  font-weight: 600;
+`;
+
+const StatusLabelIcon = styled.div`
+  color: ${({ theme }) => theme.colors.primary};
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 const StatusBadge = styled.div<{ $status: string }>`
-  padding: 0.375rem 0.875rem;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   background: ${({ $status, theme }) =>
-    $status === 'active' ? theme.colors.success + '15' :
-    $status === 'pending' ? theme.colors.warning + '15' :
-    theme.colors.error + '15'};
+    $status === 'success' ? theme.colors.success + '20' :
+    $status === 'warning' ? theme.colors.warning + '20' :
+    theme.colors.error + '20'};
   color: ${({ $status, theme }) =>
-    $status === 'active' ? theme.colors.success :
-    $status === 'pending' ? theme.colors.warning :
+    $status === 'success' ? theme.colors.success :
+    $status === 'warning' ? theme.colors.warning :
     theme.colors.error};
 `;
 
-const StatusValue = styled.div`
-  font-size: 1.125rem;
+const StatusAmount = styled.div`
+  font-size: 1.25rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.secondary};
 `;
 
 const StatusDivider = styled.div`
@@ -592,27 +694,29 @@ const StatusDivider = styled.div`
   margin: ${({ theme }) => theme.spacing.lg} 0;
 `;
 
-const StatusAction = styled.button`
+const AddCreditsButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: ${({ theme }) => theme.spacing.md};
-  background: ${({ theme }) => theme.colors.primary}10;
-  border: 1px solid ${({ theme }) => theme.colors.primary}30;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  color: ${({ theme }) => theme.colors.primary};
-  font-weight: 600;
+  padding: ${({ theme }) => theme.spacing.lg};
+  background: ${({ theme }) => theme.colors.gradient};
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.primary}30;
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primary}20;
-    border-color: ${({ theme }) => theme.colors.primary};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px ${({ theme }) => theme.colors.primary}40;
   }
 `;

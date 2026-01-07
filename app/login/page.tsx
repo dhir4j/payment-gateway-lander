@@ -526,11 +526,65 @@ export default function LoginPage() {
           </svg>
 
           <LeftTitle style={{ marginTop: '2rem', fontSize: '2rem' }}>
-            Secure Login
+            Enterprise-Grade Security
           </LeftTitle>
-          <LeftDescription>
-            Your data is protected with bank-grade 256-bit encryption and PCI DSS compliance.
+          <LeftDescription style={{ marginBottom: '2rem' }}>
+            Your data is protected with bank-grade 256-bit encryption, PCI DSS Level 1 compliance, and multi-factor authentication.
           </LeftDescription>
+
+          <div style={{ textAlign: 'left', maxWidth: '400px', margin: '2rem auto' }}>
+            <div style={{ display: 'flex', alignItems: 'start', gap: '1rem', marginBottom: '1.5rem' }}>
+              <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.2)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                  <path d="M10 2L3 6v4c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6l-7-4z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.25rem' }}>Bank-Level Encryption</h4>
+                <p style={{ fontSize: '0.875rem', opacity: '0.9' }}>All data encrypted with AES-256 bit encryption</p>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'start', gap: '1rem', marginBottom: '1.5rem' }}>
+              <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.2)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                  <circle cx="10" cy="7" r="3"/>
+                  <path d="M10 11c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.25rem' }}>Two-Factor Authentication</h4>
+                <p style={{ fontSize: '0.875rem', opacity: '0.9' }}>Extra layer of security for your account</p>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'start', gap: '1rem', marginBottom: '1.5rem' }}>
+              <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.2)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                  <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z"/>
+                  <path d="M10 9a1 1 0 100 2 1 1 0 000-2z" fill="#7209b7"/>
+                  <path d="M10 11v2" stroke="#7209b7" strokeWidth="1.5"/>
+                </svg>
+              </div>
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.25rem' }}>PCI DSS Compliant</h4>
+                <p style={{ fontSize: '0.875rem', opacity: '0.9' }}>Certified for handling payment information securely</p>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'start', gap: '1rem' }}>
+              <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.2)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v4a1 1 0 102 0V7z"/>
+                  <circle cx="10" cy="14" r="1" fill="white"/>
+                </svg>
+              </div>
+              <div>
+                <h4 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.25rem' }}>24/7 Monitoring</h4>
+                <p style={{ fontSize: '0.875rem', opacity: '0.9' }}>Real-time threat detection and prevention</p>
+              </div>
+            </div>
+          </div>
         </LeftContent>
       </LeftPanel>
 

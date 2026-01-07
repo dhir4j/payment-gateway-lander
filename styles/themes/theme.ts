@@ -97,22 +97,22 @@ export const darkTheme: Theme = {
 export const lightTheme: Theme = {
   name: 'light',
   colors: {
-    primary: '#7209b7',        // Indigo Bloom
-    primaryDark: '#560bad',    // Ultrasonic Blue
-    primaryLight: '#b5179e',   // Raspberry Plum
-    secondary: '#4361ee',      // Electric Sapphire
-    accent: '#f72585',         // Neon Pink
-    background: '#FAF5FF',     // Purple-tinted background
-    backgroundSecondary: '#FEFBFF',  // Subtle purple-tinted white
+    primary: '#D946EF',        // Vibrant Fuchsia
+    primaryDark: '#A21CAF',    // Deep Fuchsia
+    primaryLight: '#F0ABFC',   // Light Fuchsia
+    secondary: '#EC4899',      // Pink
+    accent: '#8B5CF6',         // Violet
+    background: '#FDF4FF',     // Very light purple background
+    backgroundSecondary: '#FAE8FF',  // Light purple tint
     surface: '#FFFFFF',
     text: '#1F2937',
     textSecondary: '#6B7280',
-    border: '#7209b730',
+    border: '#F5D0FE',
     success: '#059669',
     error: '#DC2626',
     warning: '#D97706',
-    neonGlow: '#f72585',       // Neon Pink glow
-    gradient: 'linear-gradient(135deg, #f72585 0%, #7209b7 25%, #480ca8 50%, #4361ee 75%, #4cc9f0 100%)',
+    neonGlow: '#D946EF',
+    gradient: 'linear-gradient(135deg, #D946EF 0%, #EC4899 50%, #8B5CF6 100%)',
   },
   fonts: {
     primary: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",

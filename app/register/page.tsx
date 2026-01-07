@@ -517,33 +517,6 @@ export default function RegisterPage() {
                 </FeatureContent>
               </FeatureItem>
             </FeaturesList>
-
-            {/* SVG Illustration */}
-            <svg width="100%" height="200" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginTop: '2rem' }}>
-              {/* Growth Chart */}
-              <path d="M20 160 L80 140 L140 100 L200 80 L260 50 L320 30 L380 10" stroke="url(#lineGradient)" strokeWidth="4" strokeLinecap="round" fill="none"/>
-
-              {/* Data Points */}
-              <circle cx="80" cy="140" r="6" fill="#7209b7"/>
-              <circle cx="140" cy="100" r="6" fill="#b5179e"/>
-              <circle cx="200" cy="80" r="6" fill="#f72585"/>
-              <circle cx="260" cy="50" r="8" fill="#7209b7"/>
-              <circle cx="320" cy="30" r="8" fill="#10B981"/>
-
-              {/* Grid Lines */}
-              <line x1="20" y1="40" x2="380" y2="40" stroke="#E5E7EB" strokeWidth="1" opacity="0.5"/>
-              <line x1="20" y1="80" x2="380" y2="80" stroke="#E5E7EB" strokeWidth="1" opacity="0.5"/>
-              <line x1="20" y1="120" x2="380" y2="120" stroke="#E5E7EB" strokeWidth="1" opacity="0.5"/>
-              <line x1="20" y1="160" x2="380" y2="160" stroke="#E5E7EB" strokeWidth="1" opacity="0.5"/>
-
-              <defs>
-                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#7209b7" />
-                  <stop offset="50%" stopColor="#b5179e" />
-                  <stop offset="100%" stopColor="#10B981" />
-                </linearGradient>
-              </defs>
-            </svg>
           </LeftSection>
 
           <FormCard>
