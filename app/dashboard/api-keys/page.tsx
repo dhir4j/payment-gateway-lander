@@ -6,6 +6,7 @@ import { FiKey, FiEye, FiEyeOff, FiCopy, FiCheckCircle, FiPlus, FiTrash2, FiAler
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import Button from '@/components/ui/Button';
 import { useState } from 'react';
+import VerificationRequired from '@/components/VerificationRequired';
 
 const PageHeader = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.xl};
@@ -215,7 +216,8 @@ export default function APIKeysPage() {
   ];
 
   return (
-    <DashboardLayout>
+    <VerificationRequired>
+      <DashboardLayout>
       <PageHeader>
         <HeaderContent>
           <PageTitle>API Keys</PageTitle>
@@ -304,5 +306,6 @@ export default function APIKeysPage() {
         ))}
       </KeysGrid>
     </DashboardLayout>
+    </VerificationRequired>
   );
 }
